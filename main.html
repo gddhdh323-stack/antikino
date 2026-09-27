@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Комнаты — бронирование</title>
+    <style>
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            margin: 0;
+            min-height: 100%
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #e9e9e9;
+            background: radial-gradient(circle at 82% 45%, rgba(80, 76, 30, .13), transparent 34%), #090b0c
+        }
+
+        .page {
+            width: min(1800px, calc(100% - 48px));
+            margin: 0 auto;
+            padding: 42px 0 55px
+        }
+
+        .header {
+            margin-bottom: 28px
+        }
+
+        .header h1 {
+            margin: 0 0 8px;
+            font-size: 30px
+        }
+
+        .header p {
+            margin: 0;
+            color: #929292;
+            font-size: 14px
+        }
+
+        .rooms {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 14px
+        }
+
+        .room {
+            overflow: hidden;
+            min-width: 0;
+            border: 1px solid #303235;
+            border-radius: 7px;
+            background: #151719;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, .22)
+        }
+
+        .photo {
+            width: 100%;
+            aspect-ratio: 1.48/1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+            background: linear-gradient(135deg, #202224, #101112);
+            border-bottom: 1px solid #292b2d;
+            font-size: 13px
+        }
+
+        .photo span {
+            padding: 9px 13px;
+            border: 1px dashed #4a4c4f;
+            border-radius: 5px
+        }
+
+        .content {
+            padding: 17px 16px 16px
+        }
+
+        .room h2 {
+            margin: 0 0 8px;
+            font-size: 17px;
+            line-height: 1.25
+        }
+
+        .description {
+            min-height: 100px;
+            margin: 0 0 17px;
+            color: #9c9c9c;
+            font-size: 13px;
+            line-height: 1.55
+        }
+
+        .price {
+            display: flex;
+            align-items: baseline;
+            gap: 5px;
+            margin-bottom: 15px
+        }
+
+        .price strong {
+            font-size: 23px;
+            color: #f1c400
+        }
+
+        .price span {
+            color: #858585;
+            font-size: 12px
+        }
+
+        .info {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 15px;
+            color: #929292;
+            font-size: 12px
+        }
+
+        .info div {
+            padding: 7px 8px;
+            border: 1px solid #303235;
+            border-radius: 5px;
+            flex: 1;
+            text-align: center
+        }
+
+        .button {
+            width: 100%;
+            padding: 11px 12px;
+            border: 1px solid #514900;
+            border-radius: 5px;
+            color: #d8b800;
+            background: #1a1b1c;
+            cursor: pointer;
+            font-size: 13px
+        }
+
+        .button:hover {
+            background: #24251f;
+            border-color: #786b00
+        }
+
+        img {
+            overflow: hidden;
+        }
+
+        @media(max-width:1250px) {
+            .rooms {
+                grid-template-columns: repeat(3, minmax(0, 1fr))
+            }
+        }
+
+        @media(min-width:800px) {
+            .centered-div {
+                display: flex;
+                justify-content: center;
+                height: 100dvh;
+                flex-direction: column
+            }
+        }
+
+        @media(max-width:800px) {
+            .page {
+                width: min(100% - 24px, 600px);
+                padding-top: 24px
+            }
+
+            .rooms {
+                grid-template-columns: repeat(2, minmax(0, 1fr))
+            }
+        }
+
+        @media(max-width:520px) {
+            .rooms {
+                grid-template-columns: 1fr
+            }
+
+            .photo {
+                aspect-ratio: 1.7/1
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="centered-div">
+    <div class="page">
+        <header class="header">
+            <h1>Выберите комнату</h1>
+            <p>Комфортные комнаты для отдыха и приятного времяпровождения</p>
+        </header>
+        <section class="rooms">
+            <article class="room">
+                <div class="photo"><img src="/static/room1.jpg"></div>
+                <div class="content">
+                    <h2>Комната №1</h2>
+                    <p class="description">Уютный зал с большим экраном, мягким диваном, стильными постерами и тщательно
+                        продуманным декором.</p>
+                    <div class="price"><strong>1340 ₽</strong><span>/ час</span></div>
+                    <div class="info">
+                        <div>До 4 гостей</div>
+                        <div>12 м²</div>
+                    </div>
+                    <form action="/createPayment?price=1340" method="post">
+                        <button type="submit" class="button">Забронировать</button>
+                    </form>
+                </div>
+            </article>
+            <article class="room">
+                <div class="photo"><img src="/static/room2.jpg"></div>
+                <div class="content">
+                    <h2>Комната №2</h2>
+                    <p class="description">Один из самых больших залов, который у нас есть. Разные виды подсветки,
+                        большое пространство. Своя игровая приставка PlayStation5, аэрохоккей и караоке.</p>
+                    <div class="price"><strong>1840 ₽</strong><span>/ час</span></div>
+                    <div class="info">
+                        <div>До 15 гостей</div>
+                        <div>55 м²</div>
+                    </div>
+                    <form action="/createPayment?price=1840" method="post">
+                        <button type="submit" class="button">Забронировать</button>
+                    </form>
+                </div>
+            </article>
+            <article class="room">
+                <div class="photo"><img src="/static/room3.png"></div>
+                <div class="content">
+                    <h2>Комната №3</h2>
+                    <p class="description">Идеальное пространство для двоих: уютные мягкие канапе. Здесь царят комфорт и
+                        тишина, а ваш любимый фильм на большом экране создаст атмосферу полного уединения и
+                        расслабления.</p>
+                    <div class="price"><strong>1340 ₽</strong><span>/ час</span></div>
+                    <div class="info">
+                        <div>До 4 гостей</div>
+                        <div>13 м²</div>
+                    </div>
+                    <form action="/createPayment?price=1340" method="post">
+                        <button type="submit" class="button">Забронировать</button>
+                    </form>
+                </div>
+            </article>
+            <article class="room">
+                <div class="photo"><img src="/static/room4.png"></div>
+                <div class="content">
+                    <h2>Комната №4</h2>
+                    <p class="description">Зал с атмосферой оранжереи. Широкий серый диван и большой экран создают идеальные условия для комфортного и необычного кинопросмотра.</p>
+                    <div class="price"><strong>1300 ₽</strong><span>/ час</span></div>
+                    <div class="info">
+                        <div>До 4 гостей</div>
+                        <div>12 м²</div>
+                    </div>
+                    <form action="/createPayment?price=1300" method="post">
+                        <button type="submit" class="button">Забронировать</button>
+                    </form>
+                </div>
+            </article>
+            <article class="room">
+                <div class="photo"><img src="/static/room5.jpg"></div>
+                <div class="content">
+                    <h2>Комната №5</h2>
+                    <p class="description">Большой кинозал с большим экраном, мягкой подсветкой и просторным диваном. Здесь можно создать уютную атмосферу для двоих или провести время небольшой компанией.</p>
+                    <div class="price"><strong>1400 ₽</strong><span>/ час</span></div>
+                    <div class="info">
+                        <div>До 8 гостей</div>
+                        <div>30 м²</div>
+                    </div>
+                    <form action="/createPayment?price=1400" method="post">
+                        <button type="submit" class="button">Забронировать</button>
+                    </form>
+                </div>
+            </article>
+        </section>
+    </div>
+</div>
+</body>
+</html>
